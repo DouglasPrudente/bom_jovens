@@ -11,8 +11,7 @@ $username = "root";
 $conn = new mysqli($servername, $username, "");
 
 mysqli_select_db($conn, "bancopa");
-mysqli_query($conn, "INSERT INTO c_contato (cnome, cemail, comentario) VALUES (NULL, '$cnome',
-'$csobrenome','$cemail')");
+mysqli_query($conn, "INSERT INTO c_contato (cnome, cemail, comentario) VALUES (NULL, '$cnome', '$csobrenome','$cemail')");
 mysqli_close($conn);
 echo "Salvo com Sucesso! <br />";
 ?>
