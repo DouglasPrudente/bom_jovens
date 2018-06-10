@@ -22,7 +22,7 @@ $username = "root";
 $conn = new mysqli($servername, $username, "");
 
 mysqli_select_db($conn, "bancopa");
-mysqli_query($conn, "INSERT INTO d_pessoais (DSC_NOME, DSC_EMAIL, DSC_SNOME, DSC_RGIE, NUM_PFPJ, DSC_LOG, DSC_BAIRRO, DSC_COMP, NUM_NUM, DSC_CID, DSC_UF, NUM_CEP, DSC_CEMAIL, DSC_CTEL) VALUES ('$nome','$sobrenome','$email','$doc','$reg','$rua','bairro','numero','complemento','cidade','UF','cep','econtato','tel')");
+mysqli_query($conn, "INSERT INTO d_pessoais (DSC_NOME, DSC_EMAIL, DSC_SNOME, DSC_RGIE, NUM_PFPJ, DSC_LOG, DSC_BAIRRO, DSC_COMP, NUM_NUM, DSC_CID, DSC_UF, NUM_CEP, DSC_CEMAIL, DSC_CTEL) VALUES ('$nome','$sobrenome','$email','$doc','$reg','$rua','$bairro','$numero','$complemento','$cidade','$UF','$cep','$econtato','$tel')");
 mysqli_close($conn);
 echo "Salvo com Sucesso! <br />";
 ?>
