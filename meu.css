@@ -1,7 +1,9 @@
 .jumbotron {
-    background-color: #f4511e;
+    background-color: #5359ff;
     color: #fff;
     padding: 100px 25px;
+    min-height: 650px;
+    height: 100%;
 }
 
 .bg-grey {
