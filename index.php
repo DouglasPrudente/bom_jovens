@@ -27,12 +27,6 @@
 <div class="jumbotron text-center">
     <h1>BonJovens Transporte</h1>
     <p>O transporte que você precisa está aqui!</p>
-    <form>
-        <div class="input-group">
-
-        </div>
-</div>
-</form>
 </div>
 
 <!-- Container (About Section) -->
@@ -50,12 +44,6 @@
             <img src="assets/image/icone.png">
         </div>
     </div>
-</div>
-</body>
-</html>
-</form>
-</div>
-</div>
 </div>
 
 <!-- Container (Services Section) -->
@@ -135,7 +123,6 @@
         <span class="sr-only">Anterior</span>
     </a>
 </div>
-</div>
 
 
 <!-- Container -->
@@ -196,6 +183,7 @@ Read more at: https://www.w3schools.com/graphics/google_maps_basic.asp
     <a href="#myPage" title="To Top">
         <span class="glyphicon glyphicon-chevron-up"></span>
 </footer>
+
 
 <script>
     $(document).ready(function () {
