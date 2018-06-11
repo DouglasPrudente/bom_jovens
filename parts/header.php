@@ -4,7 +4,7 @@
     <!-- Theme Made By www.w3schools.com - No Copyright -->
     <title>BJ Transportes</title>
     <meta charset="utf-8">
-    <meta name="keywords" >
+    <link rel="icon" href="assets/image/favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
