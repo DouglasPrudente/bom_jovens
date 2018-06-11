@@ -10,12 +10,12 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Clientes</h1>
+                        <h1>Transportadoras</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="home.php">Home</a></li>
-                            <li class="breadcrumb-item active">Clientes</li>
+                            <li class="breadcrumb-item active">Transportadoras</li>
                         </ol>
                     </div>
                 </div>
@@ -28,7 +28,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Lista de Clientes Cadastrados</h3>
+                            <h3 class="card-title">Lista de Transportadoras Cadastrados</h3>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
@@ -37,7 +37,7 @@
                                 <tr>
                                     <th></th>
                                     <th>Nome</th>
-                                    <th>E-mail</th>
+                                    <th>Site</th>
                                     <th>Telefone</th>
                                     <th>Ações</th>
                                 </tr>
@@ -45,8 +45,8 @@
                                 <tbody>
                                 <tr>
                                     <td>1</td>
-                                    <td>Douglas Prudente</td>
-                                    <td>douglas.prudente@gmail.com</td>
+                                    <td>BrasPress</td>
+                                    <td><a href="#" target="_blank">braspres.com.br</a></td>
                                     <td>19 99999-9999</td>
                                     <td>
                                         <a href="#"><i class="fa fa-pencil"></i> </a>

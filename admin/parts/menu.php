@@ -17,7 +17,7 @@
     <a href="home.php" class="brand-link">
         <!--<img src="dist/img/favicon.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
              style="opacity: .8">-->
-        <span class="brand-text font-weight-light">BonJovens | Dashborad</span>
+        <span class="brand-text font-weight-light">BomJovens | Dashborad</span>
     </a>
 
     <!-- Sidebar -->
@@ -53,6 +53,15 @@
                         <p>Usuários</p>
                     </a>
                 </li>
+
+                <li class="nav-header">SISTEMA</li>
+                <li class="nav-item">
+                    <a href="index.php" class="nav-link">
+                        <i class="nav-icon fa fa-sign-out"></i>
+                        <p>Sair</p>
+                    </a>
+                </li>
+
             </ul>
         </nav>
     </div>
