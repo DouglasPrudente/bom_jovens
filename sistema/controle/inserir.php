@@ -4,9 +4,9 @@ $username = "root";
 $password = "mysql";
 $dbname = "bancopa";
 
-// Create connection
+// Cria a Conexão com o Banco
 $conn = new mysqli($servername, $username, $password, $dbname);
-// Check connection
+// Checa a conexão
 if ($conn->connect_error) {
     die("Erro ao Conectar: " . $conn->connect_error);
 }

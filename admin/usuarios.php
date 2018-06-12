@@ -59,6 +59,7 @@ $_SESSION['menu'] = 'usuarios';
                                 </tr>
                                 </thead>
                                 <tbody>
+                                	<!-- Essa função é responsável por listar todos os usuarios cadastrados no banco -->
                                     <?php $controle->getUsuarios(); ?>
                                 </tbody>
                             </table>

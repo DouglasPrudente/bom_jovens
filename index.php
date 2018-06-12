@@ -17,7 +17,6 @@
                 <li><a href="#sobrenos">SOBRE NÓS</a></li>
                 <li><a href="cadastro.php">CADASTRO</a></li>
                 <li><a href="#servico">SERVIÇOS</a></li>
-                <li><a href="#">PORTIFÓLIO</a></li>
                 <li><a href="#contato">CONTATO</a></li>
                 <li><a href="login.php">MINHA CONTA</a></li>
             </ul>
@@ -26,7 +25,7 @@
 </nav>
 
 <div class="jumbotron text-center">
-    <h1>BonJovens Transporte</h1>
+    <h1>BomJovens</h1>
     <p>O transporte que você precisa está aqui!</p>
 </div>
 
@@ -35,8 +34,7 @@
     <div class="row">
         <div class="col-sm-8">
             <h2>Nosso Trabalho</h2><br>
-            <h4>EXPLICAÇÃO BÁSICA SOBRE O SITE.</h4><br>
-            <p>EXPLICAÇÃO BÁSICA SOBRE COMO FUNCIONA O SITE.</p>
+            <h3> O desenvolvimeto desta plataforma foi baseado na ideia de uma plataforma que contenha os dados de cotação de diversas transportadoras. </h3><br>
             <br><a href="cadastro.php">
                 <button class="btn btn-default btn-lg">QUERO ME CADASTRAR</button>
             </a>
@@ -49,45 +47,31 @@
 
 <!-- Container (Services Section) -->
 <div id="servico" class="container-fluid text-center">
-    <h2>SERVICES</h2>
-    <h4>What we offer</h4>
-    <br>
-    <div class="row slideanim">
+    <h2>SERVIÇOS</h2>
+    <h3>Aqui as opções de Transportadoras são separadas de acordo com a sua necessidade, baseado no peso da sua encomenda, fornecendo informação de preços, tempo de entrega e Região de atividade.</h3>
+    <br><br>
+
+    <div class="row">
         <div class="col-sm-4">
-            <span class="glyphicon glyphicon-off logo-small"></span>
-            <h4>POWER</h4>
-            <p>Lorem ipsum dolor sit amet..</p>
+        <span style="font-size: 40px" class="glyphicon glyphicon-usd"></span>
+        <h4>Preços</h4>
+        <p>Encontre o melhor preço...</p>
         </div>
-        <div class="col-sm-4">
-            <span class="glyphicon glyphicon-heart logo-small"></span>
-            <h4>LOVE</h4>
-            <p>Lorem ipsum dolor sit amet..</p>
-        </div>
-        <div class="col-sm-4">
-            <span class="glyphicon glyphicon-lock logo-small"></span>
-            <h4>JOB DONE</h4>
-            <p>Lorem ipsum dolor sit amet..</p>
+    <div class="col-sm-4">
+        <span style="font-size: 40px" class="fa fa-truck"></span>
+        <h4>Transportadoras</h4>
+        <p>As Melhores transpotadoras, para sua segurança...</p>
+    </div>
+    <div class="col-sm-4">
+        <span style="font-size: 40px" class="glyphicon glyphicon-map-marker"></span>
+        <h4>Localidade</h4>
+        <p>As Regiões onde cada Transportadora atende...</p>
         </div>
     </div>
     <br><br>
-    <div class="row slideanim">
-        <div class="col-sm-4">
-            <span class="glyphicon glyphicon-leaf logo-small"></span>
-            <h4>GREEN</h4>
-            <p>Lorem ipsum dolor sit amet..</p>
-        </div>
-        <div class="col-sm-4">
-            <span class="glyphicon glyphicon-certificate logo-small"></span>
-            <h4>CERTIFIED</h4>
-            <p>Lorem ipsum dolor sit amet..</p>
-        </div>
-        <div class="col-sm-4">
-            <span class="glyphicon glyphicon-wrench logo-small"></span>
-            <h4 style="color:#303030;">HARD WORK</h4>
-            <p>Lorem ipsum dolor sit amet..</p>
-        </div>
-    </div>
+
 </div>
+ 
 
 <!-- Container (Portfolio Section) -->
 <h2>

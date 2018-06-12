@@ -5,7 +5,7 @@
             <p>Contate-nos, entraremos em contato dentro de 24 horas.</p>
             <p><span class="glyphicon glyphicon-map-marker"></span> Araras, SP</p>
             <p><span class="glyphicon glyphicon-phone"></span> +55 1997070-7070</p>
-            <p><span class="glyphicon glyphicon-envelope"></span> email@yahoo.com.br</p>
+            <p><span class="glyphicon glyphicon-envelope"></span> bom_jovens@gmail.com.br</p>
         </div>
         <div class="col-sm-7 slideanim">
             <form action="sistema/controle/inserircon.php" method="post">
@@ -37,6 +37,8 @@
 
 
 <script>
+
+    //script de animação da página
     $(document).ready(function () {
         // Add smooth scrolling to all links in navbar + footer link
         $(".navbar a, footer a[href='#myPage']").on('click', function (event) {

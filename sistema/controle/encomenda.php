@@ -4,14 +4,14 @@ $username = "root";
 $password = "mysql";
 $dbname = "bancopa";
 
-// Create connection
+// Cria a Conexão com o banco
 $conn = new mysqli($servername, $username, $password, $dbname);
-// Check connection
+// Checa a conexão
 if ($conn->connect_error) {
     die("Erro ao Conectar: " . $conn->connect_error);
 }
 
-//Abaixo atribuímos os valores provenientes do formulário pelo método POST
+//Recebe os valores que vem do usuário (Methodi POST)
 $cliente = $_SESSION["login"];
 $nome = $_POST["nome"];
 $peso = $_POST["peso"];

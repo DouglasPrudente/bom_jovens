@@ -5,47 +5,6 @@ include_once 'sistema/conexoes/conexao.php';
 class Controle extends Conexao
 {
 
-    /*****Limpa nome para url ******/
-    public function urlClear($link)
-    {
-        $link = strtolower($link);
-        $link = urlencode($link);
-        $link = str_replace('+', '-', $link);
-        return $link;
-    }
-
-    /*****Protege as páginas restritas do front*****/
-    public
-    function protegeFront()
-    {
-        $this->query("SELECT * FROM clientes WHERE email = '" . $_SESSION['login'] . "' AND senha = '" . $_SESSION['senha'] . "' AND excluido = 0");
-        $login = $this->conta_resultado();
-        if ($login >= 1) {
-            return true;
-        } else {
-            exit('Deu erro amigo!!! Nome de usuário ou senha incorretos.<meta http-equiv="refresh" content="2; url =/admin/ " />');
-        }
-    }
-
-    /*****Login front*****/
-    public
-    function doLogin($login, $senha)
-    {
-        $this->query("SELECT * FROM clientes WHERE email = '" . $login . "' AND senha = '" . md5($senha) . "' AND excluido = 0");
-        $contausuarios = $this->conta_resultado();
-        $usuarios = $this->recebe_resultado();
-        if ($contausuarios >= 1) {
-            $_SESSION['login'] = $login;
-            $_SESSION['senha'] = md5($senha);
-            foreach ($usuarios as $usuario) {
-                $_SESSION['bj-id'] = $usuario['id'];
-            }
-        } else {
-            exit('Ta errado ai.<meta http-equiv="refresh" content="2; url =/" />');
-        }
-    }
-
-
     //BUSCA DOS RESULTADOS DO USUARIO DENTRO DO PAINEL ADMINISTRATIVO
     public
     function getUsuarios()
@@ -185,7 +144,6 @@ class Controle extends Conexao
     }
 
     // FUNÇÃO DE LOGIN E DESCRIPT DA SENHA
-    /*****Login administrativo*****/
     public
     function login($login, $senha)
     {
@@ -204,27 +162,13 @@ class Controle extends Conexao
         }
     }
 
-
-    /********Nome de arquivo aleatório********/
-    function random_string($length)
-    {
-        $key = '';
-        $keys = array_merge(range(0, 9), range('a', 'z'));
-
-        for ($i = 0; $i < $length; $i++) {
-            $key .= $keys[array_rand($keys)];
-        }
-
-        return $key;
-    }
-
     public
     function buscaTransportadoras()
     {
-        //CALCULO SE PESO É MAIOR QUE 500KG
+        //CALCULO SE PESO É MAIOR QUE 100KG
         $peso = $_POST["peso"];
-        if ($peso >= '500') {
-            $this->query("SELECT * FROM transportadoras WHERE peso >= '500' AND excluido = 0");
+        if ($peso >= '100') {
+            $this->query("SELECT * FROM transportadoras WHERE peso >= '100' AND excluido = 0");
             $transportadoras = $this->recebe_resultado();
 
             foreach ($transportadoras as $transp) {
@@ -240,8 +184,8 @@ class Controle extends Conexao
                 </tr>';
             }
         } else {
-            //CALCULO SE PESO É MENOR QUE 500KG
-            $this->query("SELECT * FROM transportadoras WHERE peso <= '500' AND excluido = 0");
+            //CALCULO SE PESO É MENOR QUE 100KG
+            $this->query("SELECT * FROM transportadoras WHERE excluido = 0");
             $transportadoras = $this->recebe_resultado();
 
             foreach ($transportadoras as $transp) {
