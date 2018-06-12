@@ -27,28 +27,36 @@
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                 data-accordion="false">
                 <li class="nav-item">
-                    <a href="home.php" class="nav-link active">
+                    <a href="home.php" class="nav-link <?PHP if ($_SESSION['menu'] == 'dashboard') {
+                        echo 'active';
+                    } ?>">
                         <i class="fa fa-dashboard nav-icon"></i>
                         <p>Dashboard</p>
                     </a>
                 </li>
 
                 <li class="nav-item">
-                    <a href="clientes.php" class="nav-link">
+                    <a href="clientes.php" class="nav-link <?PHP if ($_SESSION['menu'] == 'clientes') {
+                        echo 'active';
+                    } ?>">
                         <i class="fa fa-users nav-icon"></i>
                         <p>Clientes</p>
                     </a>
                 </li>
 
                 <li class="nav-item">
-                    <a href="transportadoras.php" class="nav-link">
+                    <a href="transportadoras.php" class="nav-link <?PHP if ($_SESSION['menu'] == 'transportadoras') {
+                        echo 'active';
+                    } ?>">
                         <i class="fa fa-truck nav-icon"></i>
                         <p>Transportadoras</p>
                     </a>
                 </li>
 
                 <li class="nav-item">
-                    <a href="usuarios.php" class="nav-link">
+                    <a href="usuarios.php" class="nav-link <?PHP if ($_SESSION['menu'] == 'usuarios') {
+                        echo 'active';
+                    } ?>">
                         <i class="fa fa-user nav-icon"></i>
                         <p>Usuários</p>
                     </a>

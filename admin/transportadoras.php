@@ -1,4 +1,22 @@
-<?php include "parts/header.php" ?>
+<?php
+include "parts/header.php";
+
+session_start();
+include "sistema/controle/controle.php";
+$controle = new Controle;
+$controle->protegePagina();
+if ($_GET['nac']) {
+    if ($_POST['nome'] && $_POST['nome'] != '') {
+        $controle->registraTransp($_POST['nome'], $_POST['link'], $_POST['telefone'], $_POST['valor']);
+    }
+} elseif ($_GET['ac']) {
+    if ($_POST['nome'] && $_POST['nome'] != '') {
+        $controle->atualizaTransp($_GET['ac'], $_POST['nome'], $_POST['link'], $_POST['telefone'], $_POST['valor']);
+    }
+}
+
+$_SESSION['menu'] = 'transportadoras';
+?>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
 
@@ -10,12 +28,11 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Transportadoras</h1>
+                        <h1>Transpostadoras</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="home.php">Home</a></li>
-                            <li class="breadcrumb-item active">Transportadoras</li>
+                                <a href="cadastrar-transportadoras.php" class="btn btn-primary" id="to-login">Cadastrar Transpostadoras</a>
                         </ol>
                     </div>
                 </div>
@@ -28,7 +45,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Lista de Transportadoras Cadastrados</h3>
+                            <h3 class="card-title">Lista de Transpostadoras</h3>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
@@ -38,22 +55,12 @@
                                     <th></th>
                                     <th>Nome</th>
                                     <th>Site</th>
-                                    <th>Telefone</th>
+                                    <th>Valor por peso</th>
                                     <th>Ações</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>BrasPress</td>
-                                    <td><a href="#" target="_blank">braspres.com.br</a></td>
-                                    <td>19 99999-9999</td>
-                                    <td>
-                                        <a href="#"><i class="fa fa-pencil"></i> </a>
-                                        <a href="#"><i class="fa fa-trash"></i></a>
-                                    </td>
-                                </tr>
-
+                                    <?php $controle->getTransportadoras(); ?>
                                 </tbody>
                             </table>
                         </div>

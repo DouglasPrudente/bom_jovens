@@ -1,4 +1,13 @@
-<?php include "parts/header.php" ?>
+<?php
+include "parts/header.php";
+
+session_start();
+include "sistema/controle/controle.php";
+$controle = new Controle;
+$controle->protegePagina();
+
+$_SESSION['menu'] = 'clientes';
+?>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
 
@@ -11,12 +20,6 @@
                 <div class="row mb-2">
                     <div class="col-sm-6">
                         <h1>Clientes</h1>
-                    </div>
-                    <div class="col-sm-6">
-                        <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="home.php">Home</a></li>
-                            <li class="breadcrumb-item active">Clientes</li>
-                        </ol>
                     </div>
                 </div>
             </div><!-- /.container-fluid -->
@@ -39,21 +42,10 @@
                                     <th>Nome</th>
                                     <th>E-mail</th>
                                     <th>Telefone</th>
-                                    <th>Ações</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Douglas Prudente</td>
-                                    <td>douglas.prudente@gmail.com</td>
-                                    <td>19 99999-9999</td>
-                                    <td>
-                                        <a href="#"><i class="fa fa-pencil"></i> </a>
-                                        <a href="#"><i class="fa fa-trash"></i></a>
-                                    </td>
-                                </tr>
-
+                                    <?php $controle->getClientes(); ?>
                                 </tbody>
                             </table>
                         </div>

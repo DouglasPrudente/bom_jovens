@@ -1,4 +1,16 @@
-<?php include "parts/header.php" ?>
+<?php
+
+session_start();
+include "sistema/controle/controle.php";
+$controle = new Controle;
+if (!$_SESSION['login']) {
+    $controle->login($_POST['nome'], $_POST['senha']);
+}
+$controle->protegePagina();
+
+$_SESSION['menu'] = 'dashboard';
+include "parts/header.php";
+?>
     <body class="hold-transition sidebar-mini">
     <div class="wrapper">
 
@@ -32,7 +44,7 @@
 
                             <div class="small-box bg-info">
                                 <div class="inner">
-                                    <h3>150</h3>
+                                    <h3><br></h3>
 
                                     <p>Clientes Cadastrados</p>
                                 </div>
@@ -48,7 +60,7 @@
 
                             <div class="small-box bg-success">
                                 <div class="inner">
-                                    <h3>53</h3>
+                                    <h3><br></h3>
 
                                     <p>Transportadoras Cadastradas</p>
                                 </div>
@@ -63,7 +75,7 @@
                         <div class="col-lg-4 col-4">
                             <div class="small-box bg-warning">
                                 <div class="inner">
-                                    <h3>44</h3>
+                                    <h3><br></h3>
                                     <p>Usuarios Cadastrados</p>
                                 </div>
                                 <div class="icon">

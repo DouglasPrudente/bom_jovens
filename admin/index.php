@@ -1,3 +1,7 @@
+<?PHP
+session_start();
+session_destroy(); ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,13 +32,13 @@
         <div class="card-body login-card-body">
             <p class="login-box-msg">Faça seu login</p>
 
-            <form action="home.php" method="post">
+            <form id="loginform" method="post" class="form-vertical" action="home.php">
                 <div class="form-group has-feedback">
                     <div class="input-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fa fa-envelope"></i></span>
                         </div>
-                        <input type="email" name="email" placeholder="E-mail" class="form-control">
+                        <input type="email" name="nome" placeholder="E-mail" class="form-control" required>
                     </div>
                 </div>
 
@@ -48,7 +52,7 @@
                 </div>
                 <div class="row">
                     <div class="col-12 text-right">
-                        <button type="submit" class="btn btn-primary btn-block btn-flat">Logar</button>
+                        <button type="submit" class="btn btn-primary btn-block btn-flat" id="to-login">Logar</button>
                     </div>
                     <!-- /.col -->
                 </div>

@@ -1,4 +1,22 @@
-<?php include "parts/header.php" ?>
+<?php
+include "parts/header.php";
+
+session_start();
+include "sistema/controle/controle.php";
+$controle = new Controle;
+$controle->protegePagina();
+if ($_GET['nac']) {
+    if ($_POST['nome'] && $_POST['nome'] != '') {
+        $controle->registraUsuario($_POST['nome'], $_POST['email'], $_POST['senha']);
+    }
+} elseif ($_GET['ac']) {
+    if ($_POST['nome'] && $_POST['nome'] != '') {
+        $controle->atualizaUsuario($_GET['ac'], $_POST['nome'], $_POST['email']);
+    }
+}
+
+$_SESSION['menu'] = 'usuarios';
+?>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
 
@@ -14,8 +32,7 @@
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="home.php">Home</a></li>
-                            <li class="breadcrumb-item active">Usuários</li>
+                                <a href="cadastrar-usuarios.php" class="btn btn-primary" id="to-login">Cadastrar Usuários</a>
                         </ol>
                     </div>
                 </div>
@@ -28,7 +45,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Lista de Usuários Cadastrados</h3>
+                            <h3 class="card-title">Lista de Usuários</h3>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
@@ -42,16 +59,7 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Igor Santos</td>
-                                    <td>igorsantos@gmail.com</td>
-                                    <td>
-                                        <a href="#"><i class="fa fa-pencil"></i> </a>
-                                        <a href="#"><i class="fa fa-trash"></i></a>
-                                    </td>
-                                </tr>
-
+                                    <?php $controle->getUsuarios(); ?>
                                 </tbody>
                             </table>
                         </div>
