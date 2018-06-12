@@ -7,11 +7,11 @@ $controle = new Controle;
 $controle->protegePagina();
 if ($_GET['nac']) {
     if ($_POST['nome'] && $_POST['nome'] != '') {
-        $controle->registraTransp($_POST['nome'], $_POST['link'], $_POST['telefone'], $_POST['valor']);
+        $controle->registraTransp($_POST['nome'], $_POST['link'], $_POST['telefone'], $_POST['valor'], $_POST['peso']);
     }
 } elseif ($_GET['ac']) {
     if ($_POST['nome'] && $_POST['nome'] != '') {
-        $controle->atualizaTransp($_GET['ac'], $_POST['nome'], $_POST['link'], $_POST['telefone'], $_POST['valor']);
+        $controle->atualizaTransp($_GET['ac'], $_POST['nome'], $_POST['link'], $_POST['telefone'], $_POST['valor'], $_POST['peso']);
     }
 }
 
@@ -56,6 +56,7 @@ $_SESSION['menu'] = 'transportadoras';
                                     <th>Nome</th>
                                     <th>Site</th>
                                     <th>Valor por peso</th>
+                                    <th>Peso Minimo</th>
                                     <th>Ações</th>
                                 </tr>
                                 </thead>

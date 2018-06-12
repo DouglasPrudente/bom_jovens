@@ -1,32 +1,42 @@
 <?php
-@ini_set('display_errors','1');
-error_reporting (E_ALL & ~ E_NOTICE & ~ E_DEPRECATED);
-
 $servername = "localhost";
 $username = "root";
-$pass = "mysql";
-$conn = new mysqli($servername, $username, $pass);
+$password = "mysql";
+$dbname = "bancopa";
 
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+// Check connection
+if ($conn->connect_error) {
+    die("Erro ao Conectar: " . $conn->connect_error);
+}
+
+//Abaixo atribuímos os valores provenientes do formulário pelo método POST
 $nome = $_POST["nome"];
-$sobrenome = $_POST["sobrenome"];
 $email = $_POST["email"];
-$doc = $_POST["doc"];
-$reg = $_POST["reg"];
-$rua = $_POST["rua"];
+$sobrenome = $_POST["sobrenome"];
+$endereco = $_POST["endereco"];
 $bairro = $_POST["bairro"];
-$numero = $_POST["numero"];
 $complemento = $_POST["complemento"];
+$numero = $_POST["numero"];
 $cidade = $_POST["cidade"];
-$UF = $_POST["UF"];
+$uf = $_POST["uf"];
 $cep = $_POST["cep"];
-$econtato = $_POST["econtato"];
-$tel = $_POST["econtato"];
+$senha = $_POST["senha"];
+$telefone = $_POST["telefone"];
 
-mysqli_select_db($conn, "bancopa");
-mysqli_query($conn, "INSERT INTO d_pessoais (DSC_NOME, DSC_EMAIL, DSC_SNOME, DSC_RGIE, NUM_PFPJ, DSC_LOG, DSC_BAIRRO, DSC_COMP, NUM_NUM, DSC_CID, DSC_UF, NUM_CEP, DSC_CEMAIL, DSC_CTEL) VALUES ('$nome','$sobrenome','$email','$doc','$reg','$rua','$bairro','$numero','$complemento','$cidade','$UF','$cep','$econtato','$tel')");
-mysqli_close($conn);
-echo "Salvo com Sucesso! <br />";
+$sql = "INSERT INTO clientes (nome, email, sobrenome, endereco, bairro, complemento, numero, cidade, uf, cep, senha, telefone) 
+ VALUES ('$nome', '$email', '$sobrenome', '$endereco', '$bairro', '$complemento', '$numero','$cidade', '$uf', '$cep',md5('$senha'), '$telefone')"; //String com consulta SQL da inserção
+
+
+if ($conn->query($sql) === TRUE) { //verifica se foi afetada alguma linha, nesse caso inserida alguma linha
+    echo "<script language='javascript' type='text/javascript'>
+alert('Cliente cadastrado!');javascript:history.back()</script>";
+} else {
+    echo "<script language='javascript' type='text/javascript'>
+alert('Erro ao cadastrar!');javascript:history.back()</script>";
+}
+
+
 ?>
-<br><a href="index.php">Voltar.....</a></br>
-
 

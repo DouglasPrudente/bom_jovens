@@ -38,34 +38,15 @@ class Controle extends Conexao
             $_SESSION['login'] = $login;
             $_SESSION['senha'] = md5($senha);
             foreach ($usuarios as $usuario) {
-                $_SESSION['userlevel'] = $usuario['funcao'];
-                $_SESSION['useridadmin'] = $usuario['id'];
+                $_SESSION['bj-id'] = $usuario['id'];
             }
         } else {
-            exit('Ta errado ai amigao.<meta http-equiv="refresh" content="2; url =     " />');
+            exit('Ta errado ai.<meta http-equiv="refresh" content="2; url =/" />');
         }
     }
 
-    /*****Logout front*****/
-    public
-    function logoutFront()
-    {
-        session_destroy();
-        echo 'Você foi desconectado.<meta http-equiv="refresh" content="2; url=/" />';
-    }
 
-    /*****Busca informação específica da tabela específica*****/
-    public
-    function getInformacao($id, $parte, $tabela)
-    {
-        $this->query("SELECT * FROM " . $tabela . " WHERE excluido = 0 AND id = " . $id);
-        $informacoes = $this->recebe_resultado();
-
-        foreach ($informacoes as $informacao) {
-            return utf8_encode($informacao[$parte]);
-        }
-    }
-
+    //BUSCA DOS RESULTADOS DO USUARIO DENTRO DO PAINEL ADMINISTRATIVO
     public
     function getUsuarios()
     {
@@ -74,16 +55,18 @@ class Controle extends Conexao
 
         foreach ($usuarios as $usuario) {
             echo '<tr>
-                  <td>'. $usuario["id"] .'</td>
-                  <td>'. utf8_encode($usuario["nome"]) .'</td>
-                  <td>'. $usuario["email"] .'</td>
+                  <td>' . $usuario["id"] . '</td>
+                  <td>' . utf8_encode($usuario["nome"]) . '</td>
+                  <td>' . $usuario["email"] . '</td>
                   <td>
                   <a href="cadastrar-usuarios.php?ac=' . $usuario["id"] . '"><i class="fa fa-pencil"></i> </a>
+                  <a href="#"><i class="fa fa-trash"></i></a>
                   </td>
                   </tr>';
         }
     }
 
+    //BUSCA DOS RESULTADOS DA TRANSPOTADORA DENTRO DO PAINEL ADMINISTRATIVO
     public
     function getTransportadoras()
     {
@@ -92,18 +75,19 @@ class Controle extends Conexao
 
         foreach ($transporta as $transp) {
             echo '<tr>
-                  <td>'. $transp["id"] .'</td>
-                  <td>'. utf8_encode($transp["nome"]) .'</td>
-                  <td><a href="'. $transp["link"].'" target="_blank">Site da Transportadora</a> </td>
-                  <td>'. $transp["valor"] .'</td>
-                  <td>'. $transp["peso"] .'Kg</td>
+                  <td>' . $transp["id"] . '</td>
+                  <td>' . utf8_encode($transp["nome"]) . '</td>
+                  <td><a href="' . $transp["link"] . '" target="_blank">Site da Transportadora</a> </td>
+                  <td>' . $transp["valor"] . '</td>
                   <td>
                   <a href="cadastrar-transportadoras.php?ac=' . $transp["id"] . '"><i class="fa fa-pencil"></i> </a>
+                  <a href="#"><i class="fa fa-trash"></i></a>
                   </td>
                   </tr>';
         }
     }
 
+    //BUSCA DOS RESULTADOS DO CLIENTES DENTRO DO PAINEL ADMINISTRATIVO
     public
     function getClientes()
     {
@@ -112,25 +96,24 @@ class Controle extends Conexao
 
         foreach ($clientes as $cliente) {
             echo '<tr>
-                  <td>'. $cliente["id"] .'</td>
-                  <td>'. utf8_encode($cliente["nome"]) .'</td>
-                  <td>'. utf8_encode($cliente["email"]) .'</td>
-                  <td>'. $cliente["telefone"] .'</td>
+                  <td>' . $cliente["id"] . '</td>
+                  <td>' . utf8_encode($cliente["nome"]) . '</td>
+                  <td>' . utf8_encode($cliente["email"]) . '</td>
+                  <td>' . $cliente["telefone"] . '</td>
                   
                   </tr>';
         }
     }
 
-    /*****Cadastra novo atributo para anunciante específica*****/
+    //CADASTRA NOVA TRANSPORTADORA
     public
-    function registraTransp($nome, $link, $telefone, $valor, $peso)
+    function registraTransp($nome, $link, $telefone, $valor)
     {
-        $this->query("INSERT INTO transportadoras (nome, link, telefone, valor, peso) VALUES (:nome, :link, :telefone, :valor, :peso)");
+        $this->query("INSERT INTO transportadoras (nome, link, telefone, valor) VALUES (:nome, :link, :telefone, :valor)");
         $this->ligar(':nome', $nome);
         $this->ligar(':link', $link);
         $this->ligar(':telefone', $telefone);
         $this->ligar(':valor', $valor);
-        $this->ligar(':peso', $peso);
         if ($this->executar()) {
             return true;
         } else {
@@ -138,22 +121,23 @@ class Controle extends Conexao
         }
     }
 
-    /*****Atualiza cadastro do atributo da anunciante específica*****/
+    //ATUALIZA DADOS DA TRANSPORTADORA
     public
-    function atualizaTransp($id, $nome, $link, $telefone, $valor, $peso)
+    function atualizaTransp($id, $nome, $link, $telefone, $valor)
     {
-        $this->query("UPDATE transportadoras SET nome = :nome, link = :link, telefone = :telefone, valor = :valor, peso = :peso WHERE id = " . $id);
+        $this->query("UPDATE transportadoras SET nome = :nome, link = :link, telefone = :telefone, valor = :valor WHERE id = " . $id);
         $this->ligar(':nome', $nome);
         $this->ligar(':link', $link);
         $this->ligar(':telefone', $telefone);
         $this->ligar(':valor', $valor);
-        $this->ligar(':peso', $peso);
         if ($this->executar()) {
             return true;
         } else {
             return false;
         }
     }
+
+    // CADASTRA NOVO USAURIO
 
     /*****Cadastra novo usuário*****/
     public
@@ -170,6 +154,8 @@ class Controle extends Conexao
         }
     }
 
+    //ATUALIZA OS DADOS DO USUARIO
+
     /*****Atualiza cadastro do usuário*****/
     public
     function atualizaUsuario($id, $nome, $email)
@@ -184,23 +170,12 @@ class Controle extends Conexao
         }
     }
 
-    /*****Marca o item específico de uma tabela específica como excluído*****/
-    public
-    function marcaExclusao($id, $tabela)
-    {
-        $this->query("UPDATE " . $tabela . " SET excluido='1' WHERE id=" . $id);
-        if ($this->executar()) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
+    //PROTEGER PAGINA = VERIFICA SE USUARIO ESTA LOGADO
     /*****Protege o sistema administrativo*****/
     public
     function protegePagina()
     {
-        $this->query("SELECT * FROM usuarios WHERE email = '" . $_SESSION['login'] . "' AND senha = '" . $_SESSION['senha'] . "' AND excluido = 0");
+        $this->query("SELECT * FROM clientes WHERE email = '" . $_SESSION['login'] . "' AND senha = '" . $_SESSION['senha'] . "' AND excluido = 0");
         $login = $this->conta_resultado();
         if ($login >= 1) {
             return true;
@@ -209,19 +184,20 @@ class Controle extends Conexao
         }
     }
 
+    // FUNÇÃO DE LOGIN E DESCRIPT DA SENHA
     /*****Login administrativo*****/
     public
     function login($login, $senha)
     {
-        $this->query("SELECT * FROM usuarios WHERE email = '" . $login . "' AND senha = '" . md5($senha) . "' AND excluido = 0");
+        $this->query("SELECT * FROM clientes WHERE email = '" . $login . "' AND senha = '" . md5($senha) . "' AND excluido = 0");
         $contausuarios = $this->conta_resultado();
         $usuarios = $this->recebe_resultado();
         if ($contausuarios >= 1) {
             $_SESSION['login'] = $login;
             $_SESSION['senha'] = md5($senha);
+            $_SESSION['id'] = $usuarios["id"];
             foreach ($usuarios as $usuario) {
-                $_SESSION['userlevel'] = $usuario['funcao'];
-                $_SESSION['useridadmin'] = $usuario['id'];
+                $_SESSION['bj-id'] = $usuario['id'];
             }
         } else {
             exit('Ta errado ai amigao.<meta http-equiv="refresh" content="2; url =     " />');
@@ -241,5 +217,47 @@ class Controle extends Conexao
 
         return $key;
     }
+
+    public
+    function buscaTransportadoras()
+    {
+        //CALCULO SE PESO É MAIOR QUE 500KG
+        $peso = $_POST["peso"];
+        if ($peso >= '500') {
+            $this->query("SELECT * FROM transportadoras WHERE peso >= '500' AND excluido = 0");
+            $transportadoras = $this->recebe_resultado();
+
+            foreach ($transportadoras as $transp) {
+                $valor = $transp["valor"];
+                //CALCULO DE PESO * VALOR = VALOR TOTAL
+                $resultado = $peso * $valor;
+                echo '
+                <tr>
+                <td>' . utf8_encode($transp["nome"]) . '</td>
+                <td>R$ ' . $transp["valor"] . '</td>
+                <td>R$ ' . $resultado . '</td>
+                <td><a href="' . $transp["link"] . '" target="_blank"><span class="badge bg-danger">Ver Transportadora</span></a></td>
+                </tr>';
+            }
+        } else {
+            //CALCULO SE PESO É MENOR QUE 500KG
+            $this->query("SELECT * FROM transportadoras WHERE peso <= '500' AND excluido = 0");
+            $transportadoras = $this->recebe_resultado();
+
+            foreach ($transportadoras as $transp) {
+                $valor = $transp["valor"];
+                $resultado = $peso * $valor;
+                echo '
+                <tr>
+                <td>' . utf8_encode($transp["nome"]) . '</td>
+                <td>R$ ' . $transp["valor"] . '</td>
+                <td>R$ ' . $resultado . '</td>
+                <td><a href="' . $transp["link"] . '" target="_blank"><span class="badge bg-danger">Ver Transportadora</span></a></td>
+                </tr>';
+            }
+
+        }
+    }
+
 
 }//fecha classe

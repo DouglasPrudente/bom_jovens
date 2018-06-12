@@ -68,11 +68,19 @@ $_SESSION['menu'] = 'transportadoras';
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="exampleInputPassword1">Valor por Peso</label>
+                                        <label for="exampleInputPassword1">Valor por Peso (kg)</label>
                                         <input type="text" name="valor" class="form-control" id="exampleInputPassword1"
                                                placeholder="Valor" <?PHP if ($_GET['ac']) {
-                                                   echo 'value="' . $controle->getInformacao($_GET['ac'], 'valor', 'transportadoras') . '"';
-                                               } ?>">
+                                            echo 'value="' . $controle->getInformacao($_GET['ac'], 'valor', 'transportadoras') . '"';
+                                        } ?>">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="exampleInputPassword1">Peso Maximo</label>
+                                        <input type="text" name="peso" class="form-control" id="exampleInputPassword1"
+                                               placeholder="Peso Maximo" <?PHP if ($_GET['ac']) {
+                                            echo 'value="' . $controle->getInformacao($_GET['ac'], 'peso', 'transportadoras') . '"';
+                                        } ?>">
                                     </div>
 
 

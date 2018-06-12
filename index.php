@@ -19,6 +19,7 @@
                 <li><a href="#servico">SERVIÇOS</a></li>
                 <li><a href="#">PORTIFÓLIO</a></li>
                 <li><a href="#contato">CONTATO</a></li>
+                <li><a href="login.php">MINHA CONTA</a></li>
             </ul>
         </div>
     </div>

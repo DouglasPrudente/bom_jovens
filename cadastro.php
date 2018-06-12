@@ -16,6 +16,7 @@
                 <li><a href="index.php">INICIO</a></li>
                 <li><a href="#cadastro">CADASTRO</a></li>
                 <li><a href="#contato">CONTATO</a></li>
+                <li><a href="login.php">MINHA CONTA</a></li>
             </ul>
         </div>
     </div>
@@ -46,22 +47,11 @@
                                        required>
                             </td>
                             <td>
-                                <input class="form-control" id="email" name="email" placeholder="E-mail" type="email"
-                                       required>
-                            </td>
-                            <td>
                                 <input class="form-control" id="sobrenome" name="sobrenome" placeholder="Sobrenome"
                                        type="text" required>
                             </td>
-                        </tr>
-                        <tr>
                             <td>
-                                <input class="form-control" id="doc" name="doc" placeholder="RG / I.E." type="text"
-                                       required>
-                            </td>
-                        <tr>
-                            <td>
-                                <input class="form-control" id="reg" name="reg" placeholder="CPF / CNPJ" type="text"
+                                <input class="form-control" id="telefone" name="telefone" placeholder="Telefone para Contato"
                                        required>
                             </td>
                         </tr>
@@ -75,7 +65,7 @@
                     <table cellspacing="10">
                         <tr>
                             <td>
-                                <input class="form-control" id="rua" name="rua" placeholder="Logradouro" type="text"
+                                <input class="form-control" id="endereco" name="endereco" placeholder="Logradouro" type="text"
                                        required>
                             </td>
                             <td>
@@ -102,13 +92,13 @@
                         </tr>
                         <tr>
                             <td>
-                                <input class="form-control" id="UF" nUFame="estado" placeholder="UF" type="text"
+                                <input class="form-control" id="uf" name="uf" placeholder="UF" type="text"
                                        size="2" required>
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <input class="form-control" id="cep1" name="cep1" placeholder="CEP" type="text" size="8"
+                                <input class="form-control" id="cep" name="cep" placeholder="CEP" type="text" size="8"
                                        maxlength="8" required>
                             </td>
                         </tr>
@@ -118,17 +108,17 @@
 
                 <!-- DADOS DE CONTATO -->
                 <fieldset>
-                    <legend>Dados de contato</legend>
+                    <legend>Dados de acesso</legend>
                     <table cellspacing="10">
                         <tr>
                             <td>
-                                <input class="form-control" id="econtato" name="econtato"
-                                       placeholder="E-mail para Contato" required>
+                                <input class="form-control" id="email" name="email"
+                                       placeholder="E-mail" required>
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <input class="form-control" id="tel" name="tel" placeholder="Telefone para Contato"
+                                <input class="form-control" type="password" id="senha" name="senha" placeholder="Senha de acesso"
                                        required>
                             </td>
                         </tr>
