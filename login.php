@@ -38,7 +38,7 @@ session_destroy(); ?>
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fa fa-envelope"></i></span>
                         </div>
-                        <input type="email" name="email" placeholder="E-mail" class="form-control" required>
+                        <input type="email" id="email" name="email" placeholder="E-mail" class="form-control" required>
                     </div>
                 </div>
 
@@ -47,7 +47,7 @@ session_destroy(); ?>
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fa fa-lock"></i></span>
                         </div>
-                        <input type="password" name="senha" placeholder="*****" class="form-control">
+                        <input type="password" id="senha" name="senha" placeholder="*****" class="form-control">
                     </div>
                 </div>
                 <div class="row">

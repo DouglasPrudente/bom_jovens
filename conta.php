@@ -24,7 +24,6 @@ include "parts/header.php";
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="transportadoras.php">ENCOMENDAS</a></li>
                 <li><a href="index.php">SAIR</a></li>
             </ul>
         </div>
@@ -35,8 +34,8 @@ include "parts/header.php";
 <div id="sobrenos" class="container-fluid">
     <div class="row">
         <div class="col-sm-8">
-            <h2>TRANSPORTADORAS</h2>
-            <h4>CALCULO DE BUSCA (Kg)</h4>
+            <h2>TCC</h2>
+            <h4>Pesquisa de TCC's</h4>
             <form action="transportadoras.php" method="post">
                 <input class="form-control" id="peso" name="peso" type="number"
                        required>
@@ -49,19 +48,19 @@ include "parts/header.php";
             <table class="table table-bordered">
                 <tbody>
                 <tr>
-                    <th>Transportado</th>
-                    <th>Valor por peso</th>
-                    <th>Valor Total</th>
-                    <th style="width: 40px">Site</th>
+                    <th>TCC</th>
+                    <th>Alunos</th>
+                    <th>Orientador</th>
+                    <th>Linha de Estudo</th>
+                    <th>Download</th>
                 </tr>
-                <?php $controle->buscaTransportadoras(); ?>
+                
 
                 </tbody>
             </table>
             </p>
-            <br><a href="cadastrar-encomenda.php?id=<?php echo $usuario['id']; ?>">
-                <button class="btn btn-default btn-lg">CADASTRAR</button>
-            </a>
+            <br>
+
         </div>
         <div class="col-sm-4">
             <img src="assets/image/icone.png">

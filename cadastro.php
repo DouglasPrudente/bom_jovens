@@ -40,90 +40,28 @@
                 <!-- DADOS PESSOAIS -->
                 <fieldset>
                     <legend>Dados Pessoais</legend>
-                    <table cellspacing="10">
-                        <tr>
-                            <td>
-                                <input class="form-control" id="nome" name="nome" placeholder="Nome" type="text"
-                                       required>
-                            </td>
-                            <td>
-                                <input class="form-control" id="sobrenome" name="sobrenome" placeholder="Sobrenome"
-                                       type="text" required>
-                            </td>
-                            <td>
-                                <input class="form-control" id="telefone" name="telefone" placeholder="Telefone para Contato"
-                                       required>
-                            </td>
-                        </tr>
-                    </table>
+
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <input class="form-control" id="nome" name="nome" placeholder="Nome" type="text" required >
+                        </div>
+                        <div class="col-sm-6">
+                            <input class="form-control" id="ra" name="ra" placeholder="R.A" type="number" required >
+                        </div>
+                    </div>
+                    <br><br>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <input class="form-control" id="email" name="email" placeholder="E-mail" type="text" required >
+                        </div>
+                        <div class="col-sm-6">
+                            <input class="form-control" id="senha" name="senha" placeholder="Senha" type="password" required >
+                        </div>
+                    </div>
+
                 </fieldset>
                 <br/>
 
-                <!-- ENDEREÇO -->
-                <fieldset>
-                    <legend>Dados de Endereço</legend>
-                    <table cellspacing="10">
-                        <tr>
-                            <td>
-                                <input class="form-control" id="endereco" name="endereco" placeholder="Logradouro" type="text"
-                                       required>
-                            </td>
-                            <td>
-                                <input class="form-control" id="bairro" name="bairro" placeholder="Bairro" type="text"
-                                       required>
-                            </td>
-                            <td>
-                            <td>
-                                <input class="form-control" id="numero" name="numero" placeholder="Número" type="text"
-                                       size="4" required>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <input class="form-control" id="complemento" name="complemento"
-                                       placeholder="Complemento" type="text">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <input class="form-control" id="cidade" name="cidade" placeholder="Cidade" type="text"
-                                       required>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <input class="form-control" id="uf" name="uf" placeholder="UF" type="text"
-                                       size="2" required>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <input class="form-control" id="cep" name="cep" placeholder="CEP" type="text" size="8"
-                                       maxlength="8" required>
-                            </td>
-                        </tr>
-                    </table>
-                </fieldset>
-                <br/>
-
-                <!-- DADOS DE CONTATO -->
-                <fieldset>
-                    <legend>Dados de acesso</legend>
-                    <table cellspacing="10">
-                        <tr>
-                            <td>
-                                <input class="form-control" id="email" name="email"
-                                       placeholder="E-mail" required>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <input class="form-control" type="password" id="senha" name="senha" placeholder="Senha de acesso"
-                                       required>
-                            </td>
-                        </tr>
-                    </table>
-                </fieldset>
                 <br/>
 
                 <input type="submit" name="submit" style="cursor:pointer" value="Enviar">
