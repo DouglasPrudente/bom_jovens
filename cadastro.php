@@ -9,13 +9,13 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#myPage">Logo</a>
+            <a class="navbar-brand" href="#myPage">
+                <img src="assets/image/logo-repositorio-white.png" width="150" class="img-fluid"></a>
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="index.php">INICIO</a></li>
                 <li><a href="#cadastro">CADASTRO</a></li>
-                <li><a href="#contato">CONTATO</a></li>
                 <li><a href="login.php">MINHA CONTA</a></li>
             </ul>
         </div>
@@ -23,9 +23,11 @@
 </nav>
 
 <div class="jumbotron text-center">
-    <h1>BonJovens Transporte</h1>
-    <p>O transporte que você precisa está aqui!</p>
+    <h1>Repositório</h1>
+    <img src="assets/image/logo-fho.png">
+    <p><br>A sua pesquisa facilitada!</p>
 </div>
+
 
 
 <div id="cadastro" class="container-fluid bg-grey">
@@ -74,7 +76,6 @@
 </div>
 
 <!-- Container -->
-<?php include "parts/contato.php" ?>
 </body>
 </html>
 

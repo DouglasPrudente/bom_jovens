@@ -10,13 +10,13 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#myPage">Logo</a>
+            <a class="navbar-brand" href="#myPage">
+                <img src="assets/image/logo-repositorio-white.png" width="150" class="img-fluid"></a>
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="#sobrenos">SOBRE NÓS</a></li>
                 <li><a href="cadastro.php">CADASTRO</a></li>
-                <li><a href="#contato">CONTATO</a></li>
                 <li><a href="login.php">MINHA CONTA</a></li>
             </ul>
         </div>
@@ -24,28 +24,29 @@
 </nav>
 
 <div class="jumbotron text-center">
-    <h1>BomJovens</h1>
-    <p>O transporte que você precisa está aqui!</p>
+    <h1>Repositório</h1>
+    <img src="assets/image/logo-fho.png">
+    <p><br>A sua pesquisa facilitada!</p>
 </div>
 
 <!-- Container (About Section) -->
 <div id="sobrenos" class="container-fluid">
     <div class="row">
         <div class="col-sm-8">
-            <h2>Nosso Trabalho</h2><br>
-            <h3> O desenvolvimeto desta plataforma foi baseado na ideia de uma plataforma que contenha os dados de cotação de diversas transportadoras. </h3><br>
+            <h2>Nosso Objetivo</h2><br>
+            <h3> Esta plataforma foi desenvolvida para auxiliar os alunos do curso de Sistemas da Informação na busca
+                por artigos e trablahos de conclusão de curso, trazendo de uma forma facilitada o acesso aos arquivos de pesquisa.</h3><br>
             <br><a href="cadastro.php">
-                <button class="btn btn-default btn-lg">QUERO ME CADASTRAR</button>
+                <button class="btn btn-default btn-lg">Cadastrar-se</button>
             </a>
         </div>
         <div class="col-sm-4">
-            <img src="assets/image/icone.png">
+            <img src="assets/image/logo-repositorio.png" class="img-fluid">
         </div>
     </div>
 </div>
 
 
 <!-- Container -->
-<?php include "parts/contato.php" ?>
 </body>
 </html>

@@ -25,7 +25,7 @@ session_destroy(); ?>
 <body class="hold-transition login-page">
 <div class="login-box">
     <div class="login-logo">
-        <a href="#"><b>Bom</b>Jovens</a>
+        <a href="#"><img src="assets/image/logo-repositorio.png" width="250" class="img-fluid"></a>
     </div>
     <!-- /.login-logo -->
     <div class="card">
