@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.4.15.9
--- https://www.phpmyadmin.net
+-- version 4.9.0.1
+-- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: 12-Jun-2018 às 05:21
--- Versão do servidor: 5.6.37
--- PHP Version: 5.6.31
+-- Host: 127.0.0.1
+-- Tempo de geração: 25-Out-2019 às 23:51
+-- Versão do servidor: 10.4.6-MariaDB
+-- versão do PHP: 7.3.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -17,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `bancopa`
+-- Banco de dados: `bancopa`
 --
 
 -- --------------------------------------------------------
@@ -26,7 +28,7 @@ SET time_zone = "+00:00";
 -- Estrutura da tabela `clientes`
 --
 
-CREATE TABLE IF NOT EXISTS `clientes` (
+CREATE TABLE `clientes` (
   `id` int(11) NOT NULL,
   `nome` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
@@ -40,8 +42,8 @@ CREATE TABLE IF NOT EXISTS `clientes` (
   `cep` varchar(10) NOT NULL,
   `senha` varchar(60) NOT NULL,
   `telefone` varchar(20) NOT NULL,
-  `excluido` int(11) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
+  `excluido` int(11) NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Extraindo dados da tabela `clientes`
@@ -53,21 +55,21 @@ INSERT INTO `clientes` (`id`, `nome`, `email`, `sobrenome`, `endereco`, `bairro`
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `C_CONTATO`
+-- Estrutura da tabela `c_contato`
 --
 
-CREATE TABLE IF NOT EXISTS `C_CONTATO` (
+CREATE TABLE `c_contato` (
   `id` int(11) NOT NULL,
   `nome` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `contato` text NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Extraindo dados da tabela `C_CONTATO`
+-- Extraindo dados da tabela `c_contato`
 --
 
-INSERT INTO `C_CONTATO` (`id`, `nome`, `email`, `contato`) VALUES
+INSERT INTO `c_contato` (`id`, `nome`, `email`, `contato`) VALUES
 (1, '', '', ''),
 (2, '', '', ''),
 (3, '', '', ''),
@@ -80,24 +82,47 @@ INSERT INTO `C_CONTATO` (`id`, `nome`, `email`, `contato`) VALUES
 -- Estrutura da tabela `encomendas`
 --
 
-CREATE TABLE IF NOT EXISTS `encomendas` (
+CREATE TABLE `encomendas` (
   `id` int(11) NOT NULL,
-  `data` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `data` timestamp NOT NULL DEFAULT current_timestamp(),
   `cliente` int(11) NOT NULL,
   `peso` varchar(255) NOT NULL,
   `nome` varchar(255) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Extraindo dados da tabela `encomendas`
 --
 
 INSERT INTO `encomendas` (`id`, `data`, `cliente`, `peso`, `nome`) VALUES
-(1, '2018-06-12 03:02:44', 0, '20', 'Teste'),
-(2, '2018-06-12 03:04:31', 0, '20', 'Teste'),
-(3, '2018-06-12 03:11:33', 0, '12', 'Igor'),
-(4, '2018-06-12 03:11:55', 0, '12', 'Igor'),
-(5, '2018-06-12 03:29:52', 0, '52', 'Douglas');
+(1, '2018-06-12 06:02:44', 0, '20', 'Teste'),
+(2, '2018-06-12 06:04:31', 0, '20', 'Teste'),
+(3, '2018-06-12 06:11:33', 0, '12', 'Igor'),
+(4, '2018-06-12 06:11:55', 0, '12', 'Igor'),
+(5, '2018-06-12 06:29:52', 0, '52', 'Douglas');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `tcc`
+--
+
+CREATE TABLE `tcc` (
+  `id` int(11) NOT NULL,
+  `titulo` varchar(255) NOT NULL,
+  `autores` varchar(255) NOT NULL,
+  `palavras_chave` varchar(255) NOT NULL,
+  `linha_pesquisa` varchar(255) NOT NULL,
+  `resumo` text NOT NULL,
+  `arquivo` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `tcc`
+--
+
+INSERT INTO `tcc` (`id`, `titulo`, `autores`, `palavras_chave`, `linha_pesquisa`, `resumo`, `arquivo`) VALUES
+(1, 'Titulo', 'Autor', 'Palavra, Chave', 'Linha de pesquisa', 'Aqui um resumo', '');
 
 -- --------------------------------------------------------
 
@@ -105,15 +130,15 @@ INSERT INTO `encomendas` (`id`, `data`, `cliente`, `peso`, `nome`) VALUES
 -- Estrutura da tabela `transportadoras`
 --
 
-CREATE TABLE IF NOT EXISTS `transportadoras` (
+CREATE TABLE `transportadoras` (
   `id` int(11) NOT NULL,
   `nome` varchar(255) NOT NULL,
   `link` varchar(255) NOT NULL,
   `telefone` varchar(255) NOT NULL,
   `valor` varchar(255) NOT NULL,
-  `excluido` int(11) NOT NULL DEFAULT '0',
+  `excluido` int(11) NOT NULL DEFAULT 0,
   `peso` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Extraindo dados da tabela `transportadoras`
@@ -131,87 +156,100 @@ INSERT INTO `transportadoras` (`id`, `nome`, `link`, `telefone`, `valor`, `exclu
 -- Estrutura da tabela `usuarios`
 --
 
-CREATE TABLE IF NOT EXISTS `usuarios` (
+CREATE TABLE `usuarios` (
   `id` int(11) NOT NULL,
   `nome` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `senha` varchar(255) NOT NULL,
-  `excluido` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+  `excluido` int(11) NOT NULL,
+  `status` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Extraindo dados da tabela `usuarios`
 --
 
-INSERT INTO `usuarios` (`id`, `nome`, `email`, `senha`, `excluido`) VALUES
-(1, 'Igor', 'igor@igor.com.br', '2927bd9dd74ffb98b3a751d7f289e92a', 0),
-(2, 'Douglas', 'douglas@douglas.com.br', '3b16dc694c38d04f7d7451cc37d3c654', 0),
-(3, 'Bruno', 'bruno@bruno.com.br', 'e3928a3bc4be46516aa33a79bbdfdb08', 0),
-(4, 'Admin', 'admin@admin.com', '21232f297a57a5a743894a0e4a801fc3', 0);
+INSERT INTO `usuarios` (`id`, `nome`, `email`, `senha`, `excluido`, `status`) VALUES
+(1, 'Igor', 'igor@igor.com.br', '123456', 0, 1),
+(2, 'Douglas', 'douglas@douglas.com.br', '123456', 0, 1),
+(3, 'Bruno', 'bruno@bruno.com.br', 'e3928a3bc4be46516aa33a79bbdfdb08', 0, 0),
+(4, 'Admin', 'admin@admin.com', '21232f297a57a5a743894a0e4a801fc3', 0, 0);
 
 --
--- Indexes for dumped tables
+-- Índices para tabelas despejadas
 --
 
 --
--- Indexes for table `clientes`
+-- Índices para tabela `clientes`
 --
 ALTER TABLE `clientes`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `C_CONTATO`
+-- Índices para tabela `c_contato`
 --
-ALTER TABLE `C_CONTATO`
+ALTER TABLE `c_contato`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `encomendas`
+-- Índices para tabela `encomendas`
 --
 ALTER TABLE `encomendas`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `transportadoras`
+-- Índices para tabela `tcc`
+--
+ALTER TABLE `tcc`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Índices para tabela `transportadoras`
 --
 ALTER TABLE `transportadoras`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `usuarios`
+-- Índices para tabela `usuarios`
 --
 ALTER TABLE `usuarios`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT de tabelas despejadas
 --
 
 --
--- AUTO_INCREMENT for table `clientes`
+-- AUTO_INCREMENT de tabela `clientes`
 --
 ALTER TABLE `clientes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
 --
--- AUTO_INCREMENT for table `C_CONTATO`
+-- AUTO_INCREMENT de tabela `c_contato`
 --
-ALTER TABLE `C_CONTATO`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+ALTER TABLE `c_contato`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
 --
--- AUTO_INCREMENT for table `encomendas`
+-- AUTO_INCREMENT de tabela `encomendas`
 --
 ALTER TABLE `encomendas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
 --
--- AUTO_INCREMENT for table `transportadoras`
+-- AUTO_INCREMENT de tabela `tcc`
+--
+ALTER TABLE `tcc`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT de tabela `transportadoras`
 --
 ALTER TABLE `transportadoras`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
---
--- AUTO_INCREMENT for table `usuarios`
---
-ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+COMMIT;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
