@@ -35,34 +35,39 @@ $_SESSION['menu'] = 'usuarios';
                             </div>
                             <!-- /.card-header -->
                             <!-- form start -->
-                            <?PHP if ($_GET['ac']) {
-                                echo '<form role="form" action="usuarios.php?ac=' . $_GET["ac"] . '" method="post" class="form-horizontal">';
-                            } else {
-                                echo '<form role="form" action="usuarios.php?nac=1" method="post" class="form-horizontal">';
-                            } ?>
+                            <form role="form" action="sistema/controle/inserir_usuario.php" method="post" class="form-horizontal">
                                 <div class="card-body">
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Nome</label>
                                         <input type="text" name="nome" class="form-control" id="exampleInputEmail1"
-                                               placeholder="Seu nome" <?PHP if ($_GET['ac']) {
-                                                   echo 'value="' . $controle->getInformacao($_GET['ac'], 'nome', 'usuarios') . '"';
-                                               } ?>">
+                                               placeholder="Seu nome" />
                                     </div>
 
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">E-mail</label>
                                         <input type="email" name="email" class="form-control" id="exampleInputEmail1"
-                                               placeholder="Seu e-mail" <?PHP if ($_GET['ac']) {
-                                                   echo 'value="' . $controle->getInformacao($_GET['ac'], 'email', 'usuarios') . '"';
-                                               } ?>">
+                                               placeholder="Seu e-mail" />
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">R.A.</label>
+                                        <input type="number" name="ra" class="form-control" id="exampleInputEmail1"
+                                               placeholder="Seu R.A."/>
                                     </div>
 
                                     <div class="form-group">
                                         <label for="exampleInputPassword1">Senha</label>
                                         <input type="password" name="senha" class="form-control" id="exampleInputPassword1"
-                                               placeholder="Sua senha" <?PHP if ($_GET['ac']) {
-                                                   echo 'value="' . $controle->getInformacao($_GET['ac'], 'nome', 'usuarios') . '"';
-                                               } ?>">
+                                               placeholder="******" />
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Status</label>
+                                        <select name="status" class="form-control" id="exampleInputPassword1"
+                                               placeholder="Sua senha" >
+                                            <option value="1">Administrador</option>
+                                            <option value="2">Cliente</option>
+                                        </select>
                                     </div>
 
 

@@ -7,7 +7,7 @@ session_destroy(); ?>
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>BomJovens Trasnpotadora | Painel Administrativo</title>
+    <title>Repositório Insitucional - FHO Araras | Painel Administrativo</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -16,7 +16,7 @@ session_destroy(); ?>
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <!-- Theme style -->
-    <link rel="stylesheet" href="dist/css/adminlte.min.css">
+    <link rel="stylesheet" href="dist/css/adminlte.css">
     <!-- iCheck -->
     <link rel="stylesheet" href="plugins/iCheck/square/blue.css">
     <!-- Google Font: Source Sans Pro -->
@@ -25,7 +25,7 @@ session_destroy(); ?>
 <body class="hold-transition login-page">
 <div class="login-box">
     <div class="login-logo">
-        <a href="index2.html"><b>Bom</b>Jovens</a>
+        <a href="#"><img src="../assets/image/logo-repositorio.png" width="250" class="img-fluid"></a>
     </div>
     <!-- /.login-logo -->
     <div class="card">
@@ -38,7 +38,7 @@ session_destroy(); ?>
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fa fa-envelope"></i></span>
                         </div>
-                        <input type="email" name="nome" placeholder="E-mail" class="form-control" required>
+                        <input type="email" name="nome" id="nome" placeholder="E-mail" class="form-control" required>
                     </div>
                 </div>
 
@@ -47,7 +47,7 @@ session_destroy(); ?>
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fa fa-lock"></i></span>
                         </div>
-                        <input type="password" name="senha" placeholder="*****" class="form-control">
+                        <input type="password" name="senha" id="senha" placeholder="*****" class="form-control">
                     </div>
                 </div>
                 <div class="row">

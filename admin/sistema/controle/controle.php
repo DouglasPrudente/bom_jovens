@@ -18,12 +18,12 @@ class Controle extends Conexao
     public
     function protegeFront()
     {
-        $this->query("SELECT * FROM clientes WHERE email = '" . $_SESSION['login'] . "' AND senha = '" . $_SESSION['senha'] . "' AND excluido = 0");
+        $this->query("SELECT * FROM usuarios WHERE status = '1' AND email = '" . $_SESSION['login'] . "' AND senha = '" . $_SESSION['senha'] . "' AND excluido = 0");
         $login = $this->conta_resultado();
         if ($login >= 1) {
             return true;
         } else {
-            exit('Deu erro amigo!!! Nome de usuário ou senha incorretos.<meta http-equiv="refresh" content="2; url =/admin/ " />');
+            exit('Deu erro amigo!!! Nome de usuário ou senha incorretos.');
         }
     }
 
@@ -31,18 +31,18 @@ class Controle extends Conexao
     public
     function doLogin($login, $senha)
     {
-        $this->query("SELECT * FROM clientes WHERE email = '" . $login . "' AND senha = '" . md5($senha) . "' AND excluido = 0");
+        $this->query("SELECT * FROM usuarios WHERE status = '1' AND email = '" . $login . "' AND senha = '" . $senha . "' AND excluido = 0");
         $contausuarios = $this->conta_resultado();
         $usuarios = $this->recebe_resultado();
         if ($contausuarios >= 1) {
             $_SESSION['login'] = $login;
-            $_SESSION['senha'] = md5($senha);
+            $_SESSION['senha'] = $senha;
             foreach ($usuarios as $usuario) {
                 $_SESSION['userlevel'] = $usuario['funcao'];
                 $_SESSION['useridadmin'] = $usuario['id'];
             }
         } else {
-            exit('Ta errado ai amigao.<meta http-equiv="refresh" content="2; url =     " />');
+            exit('Ta errado ai amigao.');
         }
     }
 
@@ -58,11 +58,31 @@ class Controle extends Conexao
     public
     function getInformacao($id, $parte, $tabela)
     {
-        $this->query("SELECT * FROM " . $tabela . " WHERE excluido = 0 AND id = " . $id);
+        $this->query("SELECT * FROM " . $tabela . " WHERE id = " . $id);
         $informacoes = $this->recebe_resultado();
 
         foreach ($informacoes as $informacao) {
             return utf8_encode($informacao[$parte]);
+        }
+    }
+
+
+    public
+    function getTcc()
+    {
+        $this->query("SELECT * FROM trabalhos WHERE excluido = 0");
+        $tccs = $this->recebe_resultado();
+
+        foreach ($tccs as $tcc) {
+            echo '<tr>
+                  <td>'. $tcc["id"] .'</td>
+                  <td>'. utf8_encode($tcc["tcc"]) .'</td>
+                  <td>'. utf8_encode($tcc["alunos"]) .'</td>
+                  <td>'. utf8_encode($tcc["orientador"]) .'</td>
+                  <td>'. utf8_encode($tcc["linha_estudo"]) .'</td>
+                  <td>'. $tcc["arquivo"] .'</td>
+                  
+                  </tr>';
         }
     }
 
@@ -74,95 +94,26 @@ class Controle extends Conexao
 
         foreach ($usuarios as $usuario) {
             echo '<tr>
-                  <td>'. $usuario["id"] .'</td>
-                  <td>'. utf8_encode($usuario["nome"]) .'</td>
-                  <td>'. $usuario["email"] .'</td>
+                  <td>' . $usuario["id"] . '</td>
+                  <td>' . utf8_encode($usuario["nome"]) . '</td>
+                  <td>' . $usuario["email"] . '</td>
                   <td>
                   <a href="cadastrar-usuarios.php?ac=' . $usuario["id"] . '"><i class="fa fa-pencil"></i> </a>
+                  <a href="#"><i class="fa fa-trash"></i></a>
                   </td>
                   </tr>';
         }
     }
 
-    public
-    function getTransportadoras()
-    {
-        $this->query("SELECT * FROM transportadoras WHERE excluido = 0");
-        $transporta = $this->recebe_resultado();
-
-        foreach ($transporta as $transp) {
-            echo '<tr>
-                  <td>'. $transp["id"] .'</td>
-                  <td>'. utf8_encode($transp["nome"]) .'</td>
-                  <td><a href="'. $transp["link"].'" target="_blank">Site da Transportadora</a> </td>
-                  <td>'. $transp["valor"] .'</td>
-                  <td>'. $transp["peso"] .'Kg</td>
-                  <td>
-                  <a href="cadastrar-transportadoras.php?ac=' . $transp["id"] . '"><i class="fa fa-pencil"></i> </a>
-                  </td>
-                  </tr>';
-        }
-    }
-
-    public
-    function getClientes()
-    {
-        $this->query("SELECT * FROM clientes WHERE excluido = 0");
-        $clientes = $this->recebe_resultado();
-
-        foreach ($clientes as $cliente) {
-            echo '<tr>
-                  <td>'. $cliente["id"] .'</td>
-                  <td>'. utf8_encode($cliente["nome"]) .'</td>
-                  <td>'. utf8_encode($cliente["email"]) .'</td>
-                  <td>'. $cliente["telefone"] .'</td>
-                  
-                  </tr>';
-        }
-    }
-
-    /*****Cadastra novo atributo para anunciante específica*****/
-    public
-    function registraTransp($nome, $link, $telefone, $valor, $peso)
-    {
-        $this->query("INSERT INTO transportadoras (nome, link, telefone, valor, peso) VALUES (:nome, :link, :telefone, :valor, :peso)");
-        $this->ligar(':nome', $nome);
-        $this->ligar(':link', $link);
-        $this->ligar(':telefone', $telefone);
-        $this->ligar(':valor', $valor);
-        $this->ligar(':peso', $peso);
-        if ($this->executar()) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    /*****Atualiza cadastro do atributo da anunciante específica*****/
-    public
-    function atualizaTransp($id, $nome, $link, $telefone, $valor, $peso)
-    {
-        $this->query("UPDATE transportadoras SET nome = :nome, link = :link, telefone = :telefone, valor = :valor, peso = :peso WHERE id = " . $id);
-        $this->ligar(':nome', $nome);
-        $this->ligar(':link', $link);
-        $this->ligar(':telefone', $telefone);
-        $this->ligar(':valor', $valor);
-        $this->ligar(':peso', $peso);
-        if ($this->executar()) {
-            return true;
-        } else {
-            return false;
-        }
-    }
 
     /*****Cadastra novo usuário*****/
     public
     function registraUsuario($nome, $email, $senha)
     {
-        $this->query("INSERT INTO usuarios (nome, email, senha) VALUES (:nome, :email, :senha)");
+        $this->query("INSERT INTO usuarios (nome, email, senha, status) VALUES (:nome, :email, :senha, :status)");
         $this->ligar(':nome', $nome);
         $this->ligar(':email', $email);
-        $this->ligar(':senha', md5($senha));
+        $this->ligar(':senha', $senha);
         if ($this->executar()) {
             return true;
         } else {
@@ -213,19 +164,94 @@ class Controle extends Conexao
     public
     function login($login, $senha)
     {
-        $this->query("SELECT * FROM usuarios WHERE email = '" . $login . "' AND senha = '" . md5($senha) . "' AND excluido = 0");
+        $this->query("SELECT * FROM usuarios WHERE status = '1' AND email = '" . $login . "' AND senha = '" . $senha . "' AND excluido = '0'");
         $contausuarios = $this->conta_resultado();
         $usuarios = $this->recebe_resultado();
         if ($contausuarios >= 1) {
             $_SESSION['login'] = $login;
-            $_SESSION['senha'] = md5($senha);
-            foreach ($usuarios as $usuario) {
-                $_SESSION['userlevel'] = $usuario['funcao'];
-                $_SESSION['useridadmin'] = $usuario['id'];
-            }
+            $_SESSION['senha'] = $senha;
+        
         } else {
             exit('Ta errado ai amigao.<meta http-equiv="refresh" content="2; url =     " />');
         }
+    }
+
+
+
+/************** Insere  TCC no banco **************/
+
+    public
+    function registraTcc($titulo, $autores, $palavras_chave, $linha_pesquisa, $resumo)
+    {
+        /**************Coleta as informações do arquivo enviado e salva na pasta destino*********/
+        $filename = $_FILES['arquivopdf']['name']; // Salva o nome do arquivo em $filename
+        $ext = pathinfo($filename, PATHINFO_EXTENSION); // Filtra a extensão do arquivo a partir de $filename e salva em $ext
+        $allowed = array('pdf'); // Define quais extensões de arquivo serão permitidas
+        if (!in_array(strtolower($ext), $allowed)) { // Confere se o arquivo é válido
+            exit('Tipo de arquivo inválido.');
+        }
+        $nomearquivo = $this->random_string(80); // Define um nome aleatório para o arquivo
+        $pastadetcc = 'uploads/tcc/'; // Define a pasta para onde as imagens serão enviadas
+        $uploadfile = $pastadetcc . $nomearquivo . '.' . $ext; // concatena as informações geradas para criar o arquivo
+        while (file_exists($uploadfile)) { // Verifica se o arquivo já existe
+            $nomearquivo = $this->random_string(60); // Gera um novo nome enquanto o anterior existir
+            $uploadfile = $pastadetcc . $nomearquivo . '.' . $ext; // concatena as informações coletadas com o novo nome
+        }
+        if (!move_uploaded_file($_FILES['arquivopdf']['tmp_name'], $uploadfile)) { // Move o arquivo para o local definido
+            exit('Falha ao enviar arquivo:' . $uploadfile . '<br />' . print_r($_FILES));
+        }
+
+        $foto = $nomearquivo . '.' . $ext; // Recupera somente o nome do arquivo para salvar na base de dados
+
+        
+        $this->query("INSERT INTO tcc (titulo, autores, palavras_chave, linha_pesquisa, resumo, arquivo) VALUES (:titulo, :autores, :palavras_chave, :linha_pesquisa, :resumo, :arquivo)");
+        $this->ligar(':titulo', $titulo);
+        $this->ligar(':autores', $autores);
+        $this->ligar(':palavras_chave', $palavras_chave);
+        $this->ligar(':linha_pesquisa', $linha_pesquisa);
+        $this->ligar(':resumo', $resumo);
+        $this->ligar(':arquivo', $arquivo);
+        if ($this->executar()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /***** Atualiza TCC *****/
+    public
+    function atualizaTcc($id, $titulo, $autores, $palavras_chave, $linha_pesquisa, $resumo)
+    {
+        $this->query("UPDATE tcc SET titulo = :titulo, autores = :autores, palavras_chave = :palavras_chave, linha_pesquisa = :linha_pesquisa, resumo = :resumo WHERE id = " . $id);
+        $this->ligar(':titulo', $titulo);
+        $this->ligar(':autores', $autores);
+        $this->ligar(':palavras_chave', $palavras_chave);
+        $this->ligar(':linha_pesquisa', $linha_pesquisa);
+        $this->ligar(':resumo', $resumo);
+        if ($this->executar()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+
+    /****  Exibe TCC ****/
+    public
+    function exibeTCC()
+    {
+        $this->query("SELECT * FROM tcc ORDER BY titulo ASC");
+        $tccs = $this->recebe_resultado();
+
+        foreach ($tccs as $tcc) {
+            echo '<tr>
+                        <td>' . utf8_encode($tcc["titulo"]) . '</td>
+                        <td>' . utf8_encode($tcc["autores"]) . '</td>
+                        <td>' . utf8_encode($tcc["linha_pesquisa"]) . '</td>
+                        <td><center><a href="' . utf8_encode($tcc["arquivo"]) . '"><i class="fa fa-file"></i></a></center></td>';
+
+        }
+
     }
 
 

@@ -14,10 +14,10 @@
 <!-- Main Sidebar Container -->
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="home.php" class="brand-link">
+    <a href="home.php" class="brand-link text-center">
         <!--<img src="dist/img/favicon.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
              style="opacity: .8">-->
-        <span class="brand-text font-weight-light">BomJovens | Dashborad</span>
+        <span class="brand-text font-weight-light"><img src="../assets/image/logo-repositorio-white.png" width="150" class="img-fluid"></a></span>
     </a>
 
     <!-- Sidebar -->
@@ -36,20 +36,11 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href="clientes.php" class="nav-link <?PHP if ($_SESSION['menu'] == 'clientes') {
+                    <a href="tcc.php" class="nav-link <?PHP if ($_SESSION['menu'] == 'tcc') {
                         echo 'active';
                     } ?>">
                         <i class="fa fa-users nav-icon"></i>
-                        <p>Clientes</p>
-                    </a>
-                </li>
-
-                <li class="nav-item">
-                    <a href="transportadoras.php" class="nav-link <?PHP if ($_SESSION['menu'] == 'transportadoras') {
-                        echo 'active';
-                    } ?>">
-                        <i class="fa fa-truck nav-icon"></i>
-                        <p>Transportadoras</p>
+                        <p>TCC's</p>
                     </a>
                 </li>
 

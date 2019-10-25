@@ -40,13 +40,13 @@ include "parts/header.php";
                 <div class="container-fluid">
 
                     <div class="row">
-                        <div class="col-lg-4 col-4">
+                        <div class="col-lg-6 col-6">
 
                             <div class="small-box bg-info">
                                 <div class="inner">
                                     <h3><br></h3>
 
-                                    <p>Clientes Cadastrados</p>
+                                    <p>TCC's Cadastrados</p>
                                 </div>
                                 <div class="icon">
                                     <i class="fa fa-users"></i>
@@ -56,23 +56,7 @@ include "parts/header.php";
                             </div>
                         </div>
 
-                        <div class="col-lg-4 col-4">
-
-                            <div class="small-box bg-success">
-                                <div class="inner">
-                                    <h3><br></h3>
-
-                                    <p>Transportadoras Cadastradas</p>
-                                </div>
-                                <div class="icon">
-                                    <i class="fa fa-truck"></i>
-                                </div>
-                                <a href="transportadoras.php" class="small-box-footer">Ver detalhes <i
-                                            class="fa fa-arrow-circle-right"></i></a>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-4 col-4">
+                        <div class="col-lg-6 col-6">
                             <div class="small-box bg-warning">
                                 <div class="inner">
                                     <h3><br></h3>

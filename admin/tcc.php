@@ -1,13 +1,19 @@
 <?php
 include "parts/header.php";
-
 session_start();
+
 include "sistema/controle/controle.php";
 $controle = new Controle;
-$controle->protegePagina();
+
+if ($_GET['at']) {
+    $controle->atualizaTcc($_POST['id'], utf8_decode($_POST['titulo']), utf8_decode($_POST['autores']), utf8_decode($_POST['palavras_chave']), $_POST['linha_estudo'], utf8_decode($_POST['resumo']));
+} elseif ($_GET['nac']) {
+    $controle->registraTcc(utf8_decode($_POST['titulo']), utf8_decode($_POST['autores']), utf8_decode($_POST['palavras_chave']), $_POST['linha_estudo'], utf8_decode($_POST['resumo']));
+    
+}
 
 
-$_SESSION['menu'] = 'usuarios';
+$_SESSION['menu'] = 'tcc';
 ?>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
@@ -20,11 +26,11 @@ $_SESSION['menu'] = 'usuarios';
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Usuários</h1>
+                        <h1>TCC</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                                <a href="cadastrar-usuarios.php" class="btn btn-primary" id="to-login">Cadastrar Usuários</a>
+                                <a href="cadastrar-tcc.php" class="btn btn-primary" id="to-login">Cadastrar TCC</a>
                         </ol>
                     </div>
                 </div>
@@ -37,22 +43,21 @@ $_SESSION['menu'] = 'usuarios';
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Lista de Usuários</h3>
+                            <h3 class="card-title">Lista de TCC's Cadastrados</h3>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
                             <table id="example2" class="table table-bordered table-hover">
                                 <thead>
                                 <tr>
+                                    <th>Titulo</th>
+                                    <th>Alunos</th>
+                                    <th>Linha de Pesquisa</th>
                                     <th></th>
-                                    <th>Nome</th>
-                                    <th>E-mail</th>
-                                    <th>Ações</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                	<!-- Essa função é responsável por listar todos os usuarios cadastrados no banco -->
-                                    <?php $controle->getUsuarios(); ?>
+                                    <?php $controle->exibeTcc(); ?>
                                 </tbody>
                             </table>
                         </div>
