@@ -7,7 +7,7 @@ session_destroy(); ?>
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>BomJovens Trasnpotadora | Painel Administrativo</title>
+    <title>Repositório Insitucional - FHO Araras | Painel Administrativo</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -38,7 +38,7 @@ session_destroy(); ?>
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fa fa-envelope"></i></span>
                         </div>
-                        <input type="email" id="email" name="email" placeholder="E-mail" class="form-control" required>
+                        <input type="email" id="nome" name="nome" placeholder="E-mail" class="form-control" required>
                     </div>
                 </div>
 

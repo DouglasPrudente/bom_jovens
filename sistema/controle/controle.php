@@ -134,12 +134,12 @@ class Controle extends Conexao
     public
     function protegePagina()
     {
-        $this->query("SELECT * FROM clientes WHERE email = '" . $_SESSION['login'] . "' AND senha = '" . $_SESSION['senha'] . "' AND excluido = 0");
+        $this->query("SELECT * FROM usuarios WHERE email = '" . $_SESSION['login'] . "' AND senha = '" . $_SESSION['senha'] . "' AND excluido = 0");
         $login = $this->conta_resultado();
         if ($login >= 1) {
             return true;
         } else {
-            exit('Deu erro amigo!!! Nome de usuário ou senha incorretos.<meta http-equiv="refresh" content="2; url =/admin/ " />');
+            exit('Deu erro amigo!!! Nome de usuário ou senha incorretos.');
         }
     }
 
@@ -147,16 +147,13 @@ class Controle extends Conexao
     public
     function login($login, $senha)
     {
-        $this->query("SELECT * FROM clientes WHERE email = '" . $login . "' AND senha = '" . md5($senha) . "' AND excluido = 0");
+        $this->query("SELECT * FROM usuarios WHERE status = '2' AND email = '" . $login . "' AND senha = '" . $senha . "' AND excluido = '0'");
         $contausuarios = $this->conta_resultado();
         $usuarios = $this->recebe_resultado();
         if ($contausuarios >= 1) {
             $_SESSION['login'] = $login;
-            $_SESSION['senha'] = md5($senha);
-            $_SESSION['id'] = $usuarios["id"];
-            foreach ($usuarios as $usuario) {
-                $_SESSION['bj-id'] = $usuario['id'];
-            }
+            $_SESSION['senha'] = $senha;
+        
         } else {
             exit('Ta errado ai amigao.<meta http-equiv="refresh" content="2; url =     " />');
         }

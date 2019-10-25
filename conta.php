@@ -3,7 +3,7 @@ session_start();
 include "sistema/controle/controle.php";
 $controle = new Controle;
 if (!$_SESSION['login']) {
-    $controle->login($_POST['email'], $_POST['senha']);
+    $controle->login($_POST['nome'], $_POST['senha']);
 }
 $controle->protegePagina();
 

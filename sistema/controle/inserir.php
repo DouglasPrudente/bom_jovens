@@ -1,7 +1,7 @@
 <?php
 $servername = "localhost";
 $username = "root";
-$password = "mysql";
+$password = "";
 $dbname = "bancopa";
 
 // Cria a Conexão com o Banco
@@ -14,19 +14,10 @@ if ($conn->connect_error) {
 //Abaixo atribuímos os valores provenientes do formulário pelo método POST
 $nome = $_POST["nome"];
 $email = $_POST["email"];
-$sobrenome = $_POST["sobrenome"];
-$endereco = $_POST["endereco"];
-$bairro = $_POST["bairro"];
-$complemento = $_POST["complemento"];
-$numero = $_POST["numero"];
-$cidade = $_POST["cidade"];
-$uf = $_POST["uf"];
-$cep = $_POST["cep"];
+$ra = $_POST["ra"];
 $senha = $_POST["senha"];
-$telefone = $_POST["telefone"];
 
-$sql = "INSERT INTO clientes (nome, email, sobrenome, endereco, bairro, complemento, numero, cidade, uf, cep, senha, telefone) 
- VALUES ('$nome', '$email', '$sobrenome', '$endereco', '$bairro', '$complemento', '$numero','$cidade', '$uf', '$cep',md5('$senha'), '$telefone')"; //String com consulta SQL da inserção
+$sql = "INSERT INTO usuarios (nome, email, ra, senha, status) VALUES ('$nome', '$email', '$ra', '$senha', 2)"; //String com consulta SQL da inserção
 
 
 if ($conn->query($sql) === TRUE) { //verifica se foi afetada alguma linha, nesse caso inserida alguma linha
